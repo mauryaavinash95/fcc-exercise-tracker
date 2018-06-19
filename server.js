@@ -16,7 +16,9 @@ app.get("/", function (request, response) {
   response.sendFile(__dirname + '/views/index.html');
 });
 
-app.post("/")
+app.post("/api/exercise/new-user", function(request, response){
+  let {username} = request.body;
+})
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
