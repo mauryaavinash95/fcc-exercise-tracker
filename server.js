@@ -5,11 +5,46 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+var port = 3000;
+var {User, Exercise} = require('./schema');
 
 app.post("/api/exercise/new-user", bodyParser.json(), function(request, response){
   console.log("Request recieved at: /api/exercise/new-user")
-  console.log(request);
-  response.send(`Got response as ${request.body}`);
+  let u = new User({
+    username: request.body.username
+  });
+  u.save()
+  .then(res=>{
+    console.log(res);
+    return response.send({
+      username: res.username,
+      userId: res._id
+    });
+  })
+  .catch(err=>{
+    console.log(err);
+    return response.send("username already taken");
+  })
+})
+
+app.post("/api/exercise/new-user", bodyParser.json(), function(request, response){
+  console.log("Request recieved at: /api/exercise/new-user")
+  let u = new User({
+    username: request.body.username
+  });
+  u.save()
+  .then(res=>{
+    console.log(res);
+    return response.send({
+      username: res.username,
+      userId: res._id
+    });
+  })
+  .catch(err=>{
+    console.log(err);
+    return response.send("username already taken");
+  })
 })
 
 // http://expressjs.com/en/starter/static-files.html
@@ -21,6 +56,16 @@ app.get("/", function (request, response) {
 
 
 // listen for requests :)
-var listener = app.listen(process.env.PORT, function () {
-  console.log('Your app is listening on port ' + listener.address().port);
-});
+mongoose.Promise = global.Promise;
+mongoose.connect(process.env.MONGO_URL)
+    .then((resolve) => {
+        console.log("Connection with MongoDB server successful: ", process.env.MONGO_URL);
+    })
+    .then(()=>{
+      app.listen(port, function () {
+        console.log('Node.js listening ...');
+      });
+    })
+    .catch((err) => {
+        console.log("Error connecting to MongoDB caught: ", err);
+    });

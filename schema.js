@@ -10,8 +10,26 @@ const User = mongoose.model('user', {
 })
 
 const Exercise = mongoose.model('exercise', {
-  username: {
-  }
+  userId: {
+    type: String,
+    trim: true,
+    required: true,
+  },
+  description: {
+    type: String,
+    trim: true,
+    required: true,
+  },
+  duration: {
+    type: Number,
+    trim: true,
+    required: true,
+  },
+  date: {
+    type: String,
+    trim: true,
+    required: true,
+  },
 })
 
-module.exports = { URL, Counter }
+module.exports = { User, Exercise }
