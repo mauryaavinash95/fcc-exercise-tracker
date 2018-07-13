@@ -28,22 +28,23 @@ app.post("/api/exercise/new-user", bodyParser.json(), function(request, response
   })
 })
 
-app.post("/api/exercise/new-user", bodyParser.json(), function(request, response){
-  console.log("Request recieved at: /api/exercise/new-user")
-  let u = new User({
-    username: request.body.username
+app.post("/api/exercise/add", bodyParser.json(), function(request, response){
+  console.log("Request recieved at: /api/exercise/add")
+  let {userId, description, duration, date} = request.body;
+  let e = new Exercise({
+    userId,
+    description,
+    duration,
+    date
   });
-  u.save()
+  User.find({_id: userId})
+  .then(res=>e.save())
   .then(res=>{
-    console.log(res);
-    return response.send({
-      username: res.username,
-      userId: res._id
-    });
+    return response.send(res);
   })
   .catch(err=>{
     console.log(err);
-    return response.send("username already taken");
+    return response.send("unknown userId");
   })
 })
 

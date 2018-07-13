@@ -26,7 +26,7 @@ const Exercise = mongoose.model('exercise', {
     required: true,
   },
   date: {
-    type: String,
+    type: Date,
     trim: true,
     required: true,
   },
