@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 
 app.post("/api/exercise/new-user", bodyParser.json(), function(request, response){
   console.log("Request recieved at: /api/exercise/new-user")
-  console.log(request.body);
+  console.log(request);
 })
 
 // http://expressjs.com/en/starter/static-files.html
