@@ -4,7 +4,10 @@ function submitNewUser(){
   fetch("https://tart-forger.glitch.me/api/exercise/new-user", {
     method: "POST",
     mode: "cors",
-    body: JSON.stringify({username: "u"})
+    headers: {
+            "Content-Type": "application/json; charset=utf-8",
+    },
+    body: JSON.stringify({username})
   })
   .then(res=>
        console.log("Got response: ", res)
