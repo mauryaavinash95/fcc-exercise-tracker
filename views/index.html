@@ -7,12 +7,13 @@
       <link rel="shortcut icon" href="https://cdn.hyperdev.com/us-east-1%3A52a203ff-088b-420f-81be-45bf559d01b1%2Ffavicon.ico" type="image/x-icon"/>
       <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
       <link href="style.css" rel="stylesheet" type="text/css">
+     <script src="client.js"></script>
    </head>
 
    <body>
       <div class="container">
          <h1>Exercise tracker</h1>
-          <form action="/api/exercise/new-user" method="post">
+          <form>
             <h3>Create a New User</h3>
             <p><code>POST /api/exercise/new-user</code></p>
             <input id="username" type="text" name="username" placeholder="username" value="abcde">
@@ -29,23 +30,5 @@
           </form>
       </div>
    </body>
-
-  <script>
-    function submitNewUser(){
-      console.log("Button clicked");
-      let username = document.getElementById("username").value;
-      fetch("https://tart-forger.glitch.me/api/exercise/new-user", {
-        method: "POST",
-        mode: "cors",
-        body: {username: "u"}
-      })
-      .then(res=>
-           console.log("Got response: ", res)
-      )
-      .catch(err=>
-            console.log("Got error: ", err)
-      )
-    }
-  </script>
   
 </html>
