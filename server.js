@@ -4,21 +4,20 @@
 // init project
 var express = require('express');
 var app = express();
+var bodyParser = require('body-parser');
 
-// we've started you off with Express, 
-// but feel free to use whatever libs or frameworks you'd like through `package.json`.
+app.post("/api/exercise/new-user", bodyParser.json(), function(request, response){
+  console.log("Request recieved at: /api/exercise/new-user")
+  console.log(request.body);
+})
 
 // http://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'));
-
 // http://expressjs.com/en/starter/basic-routing.html
 app.get("/", function (request, response) {
   response.sendFile(__dirname + '/views/index.html');
 });
 
-app.post("/api/exercise/new-user", function(request, response){
-  let {username} = request.body;
-})
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
