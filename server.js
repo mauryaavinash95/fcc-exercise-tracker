@@ -31,6 +31,7 @@ app.post("/api/exercise/new-user", bodyParser.json(), function(request, response
 app.post("/api/exercise/add", bodyParser.json(), function(request, response){
   console.log("Request recieved at: /api/exercise/add")
   let {userId, description, duration, date} = request.body;
+  console.log(request.body);
   let e = new Exercise({
     userId,
     description,

@@ -19,14 +19,14 @@
             <input id="username" type="text" name="username" placeholder="username" value="abcde">
             <input type="button" value="Submit" onclick="submitNewUser()">
           </form>
-          <form action="/api/exercise/add" method="post">
+          <form>
             <h3>Add exercises</h3>
             <p><code>POST /api/exercise/add</code></p>
             <input id="uid" type="text" name="userId" placeholder="userId*">
             <input id="desc" type="text" name="description" placeholder="description*">
             <input id="dur" type="text" name="duration" placeholder="duration* (mins.)">
             <input id="date" type="text" name="date" placeholder="date (yyyy-mm-dd)">
-            <input type="submit" value="Submit">
+            <input type="button" value="Submit" onclick="submitNewExercise()" >
           </form>
       </div>
       <div id="response" style="border:1;width:100%;height:20px">

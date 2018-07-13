@@ -9,6 +9,7 @@ function submitNewUser(){
     },
     body: JSON.stringify({username})
   })
+  .then(res => res.json())
   .then(res=>{
        console.log("Got response: ", res);
         document.getElementById('response').innerHTML = res;
@@ -16,7 +17,7 @@ function submitNewUser(){
   )
   .catch(err=>{
         console.log("Got error: ", err)
-        document.getElementById('response').innerHTML = err;
+        document.getElementById('response').innerHTML = "username already taken";
   }
   )
 }
@@ -24,7 +25,7 @@ function submitNewUser(){
 function submitNewExercise(){
   console.log("Exercise Button clicked");
   let userId = document.getElementById("uid").value;
-  let description = document.getElementById('description').value;
+  let description = document.getElementById('desc').value;
   let duration = document.getElementById('dur').value;
   let date = document.getElementById('date').value;
   
@@ -36,14 +37,15 @@ function submitNewExercise(){
     },
     body: JSON.stringify({userId, description, duration, date})
   })
+  .then(res => res.json())
   .then(res=>{
        console.log("Got response: ", res);
-        document.getElementById('response').innerHTML = res;
+        document.getElementById('response').innerHTML = JSON.stringify(res);
   }
   )
   .catch(err=>{
         console.log("Got error: ", err)
-        document.getElementById('response').innerHTML = err;
+        document.getElementById('response').innerHTML = JSON.stringify(err);
   }
   )
 }
